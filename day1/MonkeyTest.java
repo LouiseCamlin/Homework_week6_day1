@@ -4,11 +4,14 @@ import org.junit.*;
 public class MonkeyTest {
   Monkey monkey;
   Banana banana;
+  Tree tree;
+
 
   @Before
   public void before() {
     monkey = new Monkey("Pip");
     banana = new Banana();
+    tree = new Tree(3);
   }
 
   @Test
@@ -48,6 +51,24 @@ public class MonkeyTest {
     monkey.add(banana);
     monkey.swallow();
     assertEquals(0, monkey.bananaCount());
+  }
+
+  @Test
+  public void treeIsEmpty() {
+    assert(tree.isEmpty());
+  }
+
+  @Test
+  public void feed() {
+    assertEquals(3, tree.bananaCount());
+    tree.feed(monkey);
+    assertEquals(2, tree.bananaCount());
+    tree.feed(monkey);
+    tree.feed(monkey);
+    assert(tree.isEmpty());
+    tree.feed(monkey);
+    assertEquals(3, monkey.bananaCount());
+
   }
   
 
